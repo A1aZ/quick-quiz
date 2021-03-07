@@ -12,7 +12,7 @@ q_rx = re.compile(r"""
   # number of the question
   (?P<number>\d+)\)
   # Question being asked
-  (?P<prompt>.+\?)
+  (?P<prompt>.+\？)
   # Possible answers to the question
   (?P<answers>(?:\s+[-\*]\s.+)+)
   # image to include in response

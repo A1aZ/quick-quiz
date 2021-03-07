@@ -1,0 +1,289 @@
+{
+  "questions": [
+    {
+      "answers": [
+        "\u9178",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 1,
+      "prompt": "H<sub>2</sub>CO<sub>3</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u78b1",
+        "\u6c27\u5316\u7269",
+        "\u9178",
+        "\u5355\u8d28",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 2,
+      "prompt": "Ca(OH)<sub>2</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u6c27\u5316\u7269",
+        "\u9178",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 3,
+      "prompt": "CaO\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u6709\u673a\u7269",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u76d0",
+        "\u9178"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 4,
+      "prompt": "CH<sub>4</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u76d0",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u9178",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 5,
+      "prompt": "CuSO<sub>4</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u76d0",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u9178",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 6,
+      "prompt": "NaHCO<sub>3</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u9178",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 7,
+      "prompt": "HCl\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u6c27\u5316\u7269",
+        "\u9178",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u76d0"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 8,
+      "prompt": "SO<sub>2</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u5355\u8d28",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u9178",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 9,
+      "prompt": "Fe\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u5355\u8d28",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u9178",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 10,
+      "prompt": "Cl<sub>2</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u76d0",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u9178",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 11,
+      "prompt": "NaCl\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u9178",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 12,
+      "prompt": "HF\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u78b1",
+        "\u6c27\u5316\u7269",
+        "\u9178",
+        "\u5355\u8d28",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 13,
+      "prompt": "NH<sub>3</sub>\u00b7H<sub>2</sub>O\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u78b1",
+        "\u6c27\u5316\u7269",
+        "\u9178",
+        "\u5355\u8d28",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 14,
+      "prompt": "Al(OH)<sub>3</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u6c27\u5316\u7269",
+        "\u9178",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 15,
+      "prompt": "H<sub>2</sub>O<sub>2</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u5355\u8d28",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u9178",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 16,
+      "prompt": "O<sub>3</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u78b1",
+        "\u6c27\u5316\u7269",
+        "\u9178",
+        "\u5355\u8d28",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 17,
+      "prompt": "Mg(OH)<sub>2</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u9178",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u76d0",
+        "\u6709\u673a\u7269"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 18,
+      "prompt": "H<sub>2</sub>SO<sub>4</sub>\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    },
+    {
+      "answers": [
+        "\u76d0",
+        "\u6c27\u5316\u7269",
+        "\u78b1",
+        "\u5355\u8d28",
+        "\u9178"
+      ],
+      "correct": {
+        "index": 0
+      },
+      "number": 19,
+      "prompt": "NH<sub>4</sub>Cl\u7269\u8d28\u7c7b\u522b\u5c5e\u4e8e\uff1f"
+    }
+  ],
+  "title": "\u7269\u8d28\u5206\u7c7b",
+  "url": "https://quiz.alanzoe.com/quick-quiz/substance-classification.html"
+}

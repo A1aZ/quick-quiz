@@ -1,7 +1,24 @@
 /*
   Quick quiz bootstrap extension
 */
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
 
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
 
 ;(function($) {
 
@@ -82,7 +99,7 @@ var $indicators = $('<ol>')
 
   $("<button>")
     .attr('class', 'quiz-button btn')
-    .text("Take the quiz!")
+    .text("开始答题!")
     .click(function() {
       $quiz.carousel('next');
       $indicators.addClass('show');
@@ -148,6 +165,16 @@ var $indicators = $('<ol>')
 
     // for each possible answer to the question
     // add a button with a click event
+
+    // randomize answers
+
+    var min = Math.ceil(0);
+    var max = Math.floor(question.answers.length - 1);
+    var $right_answer = question.answers.splice(question.correct.index, 1);
+    question.answers = shuffle(question.answers);
+    question.correct.index = Math.floor(Math.random() * (max - min + 1)) + min
+    question.answers.splice(question.correct.index, 0, $right_answer)
+
     $.each(question.answers, function(answer_index, answer) {
 
       // create an answer button div
@@ -165,7 +192,7 @@ var $indicators = $('<ol>')
       var opts = {
         allowOutsideClick : false,
         allowEscapeKey : false,
-        confirmButtonText: "Next Question",
+        confirmButtonText: "下一题",
         html : true,
         confirmButtonColor: "#0096D2"
       };
@@ -174,8 +201,8 @@ var $indicators = $('<ol>')
       // answer dialogue
       if (correct) {
         opts = $.extend(opts, {
-          title: "Nice!",
-          text: "Well done" + (
+          title: "正确！",
+          text: "回答正确，" + (
             question.correct.text ?
             ("<div class=\"correct-text\">" +
               question.correct.text +
@@ -185,10 +212,10 @@ var $indicators = $('<ol>')
         });
       } else {
         opts = $.extend(opts, {
-          title: "Drat",
+          title: "错误！",
           text: (
-            "Nope, not quite right!<br/><br/>" +
-            "The correct answer was \"" +
+            "回答错误！<br/><br/>" +
+            "正确答案是 \"" +
             question.answers[question.correct.index] + "\"." + (
             question.correct.text ?
             ("<div class=\"correct-text\">" +
@@ -201,7 +228,7 @@ var $indicators = $('<ol>')
       }
 
       if (last_question) {
-        opts.confirmButtonText = "See your results";
+        opts.confirmButtonText = "查看测试结果";
       }
 
       // bind click event to answer button,
@@ -219,12 +246,11 @@ var $indicators = $('<ol>')
           if (last_question) {
             $results_title.html(resultsText(state));
             $results_ratio.text(
-              "You got " +
-              Math.round(100*(state.correct/state.total)) +
-              "% of the questions correct!"
+              "答对了 " + state.correct + "题（总计"
+                + state.total + "题）"
             );
-            $twitter_link.attr('href', tweet(state, quiz_opts));
-            $facebook_link.attr('href', facebook(state, quiz_opts));
+            // $twitter_link.attr('href', tweet(state, quiz_opts));
+            // $facebook_link.attr('href', facebook(state, quiz_opts));
             $indicators.removeClass('show');
             // indicate the question number
             $indicators.find('li')
@@ -273,22 +299,9 @@ var $indicators = $('<ol>')
     .attr("class", "quiz-answers")
     .appendTo($results_slide);
 
-  var $social = $("<div>")
-    .attr('class', 'results-social')
-    .html('<div id = "social-text">Did you like the quiz? Share your results with your friends, so they can give it a shot!</div>')
-    .appendTo($results_slide);
-
-  var $twitter_link = $('<a>')
-    .html('<span class="social social-twitter follow-tw"></span>')
-    .appendTo($social);
-
-  var $facebook_link = $('<a>')
-    .html('<span class="social social-facebook follow-fb"></span>')
-    .appendTo($social);
-
   $("<button>")
     .attr('class', 'quiz-button btn')
-    .text("Try again?")
+    .text("再来一次?")
     .click(function() {
       state.correct = 0;
       $quiz.carousel(0);
@@ -313,47 +326,26 @@ function resultsText(state) {
 
   switch (true) {
     case (ratio === 1):
-      text = "Wow&mdash;perfect score!";
+      text = "Wow&mdash;满分！";
       break;
     case (ratio > 0.9):
-      text = "Awesome job, you got most of them right.";
+      text = "干得不错，你答对了大部分题目！";
       break;
-    case (ratio > 0.60):
-      text = "Pretty good, we'll say that's a pass.";
+    case (ratio >= 0.60):
+      text = "恭喜，及格啦~";
       break;
     case (ratio > 0.5):
-      text = "Well, at least you got half of them right&hellip;";
+      text = "Emmm, 至少答对一半题了...";
       break;
     case (ratio < 0.5 && ratio !== 0):
-      text = "Looks like this was a tough one, better luck next time.";
+      text = "Ops! 一半都没有回答正确...";
       break;
     case (ratio === 0):
-      text = "Yikes, none correct. Well, maybe it was rigged?";
+      text = "一题都没有答对，是不是该努力了？";
       break;
   }
   return text;
 
-}
-
-
-function tweet(state, opts) {
-
-  var body = (
-    "I got " + state.correct +
-    " out of " + state.total +
-    " on @taxpolicycenter’s \"" + opts.title +
-    "\" quiz. Test your knowledge here: " + opts.url
-  );
-
-  return (
-    "http://twitter.com/intent/tweet?text=" +
-    encodeURIComponent(body)
-  );
-
-}
-
-function facebook(state, opts) {
-  return "https://www.facebook.com/sharer/sharer.php?u=" + opts.url;
 }
 
 
