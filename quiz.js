@@ -170,15 +170,12 @@ var $indicators = $('<ol>')
     // add a button with a click event
 
     // randomize answers
-
-    if (question.answers.length > 2) {
-      var min = Math.ceil(0);
-      var max = Math.floor(question.answers.length - 1);
-      var $right_answer = question.answers.splice(question.correct.index, 1);
-      question.answers = shuffle(question.answers);
-      question.correct.index = Math.floor(Math.random() * (max - min + 1)) + min
-      question.answers.splice(question.correct.index, 0, $right_answer)
-    }
+    var min = Math.ceil(0);
+    var max = Math.floor(question.answers.length - 1);
+    var $right_answer = question.answers.splice(question.correct.index, 1);
+    question.answers = shuffle(question.answers);
+    question.correct.index = Math.floor(Math.random() * (max - min + 1)) + min
+    question.answers.splice(question.correct.index, 0, $right_answer)
 
     $.each(question.answers, function(answer_index, answer) {
 

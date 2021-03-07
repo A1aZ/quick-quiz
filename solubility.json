@@ -200,7 +200,8 @@
     },
     {
       "answers": [
-        "\u96be\u6eb6"
+        "\u96be\u6eb6",
+        "\u53ef\u6eb6"
       ],
       "correct": {
         "index": 0
@@ -210,7 +211,8 @@
     },
     {
       "answers": [
-        "\u53ef\u6eb6"
+        "\u53ef\u6eb6",
+        "\u96be\u6eb6"
       ],
       "correct": {
         "index": 0
