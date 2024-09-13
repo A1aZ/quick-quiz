@@ -25,16 +25,40 @@ function shuffle(array) {
 // keep track of number of quizes added to page
 var quiz_count = 0;
 
+// 新增全局变量
+var startTime, endTime;
+var wrongQuestions = [];
+
 // add jQuery selection method to create
 // quiz structure from question json file
 // "filename" can be path to question json
 // or javascript object
 $.fn.quiz = function(filename) {
-  if (typeof filename === "string") {
-    $.getJSON(filename, render.bind(this));
-  } else {
-    render.call(this, filename);
-  }
+  var $quiz = $(this);
+  
+  // 从API获取开始时间
+  $.ajax({
+    url: 'https://quiz-api.alanzoe.com/start_quiz',
+    method: 'POST',
+    success: function(data) {
+      startTime = data.time;
+      if (typeof filename === "string") {
+        $.getJSON(filename, render.bind($quiz));
+      } else {
+        render.call($quiz, filename);
+      }
+    },
+    error: function(error) {
+      console.error('获取开始时间失败:', error);
+      // 使用本地时间作为后备方案
+      startTime = Math.floor(Date.now() / 1000);
+      if (typeof filename === "string") {
+        $.getJSON(filename, render.bind($quiz));
+      } else {
+        render.call($quiz, filename);
+      }
+    }
+  });
 };
 
 // create html structure for quiz
@@ -52,7 +76,8 @@ function render(quiz_opts) {
   // answers to the quiz so far
   var state = {
     correct : 0,
-    total : questions.length
+    total : questions.length,
+    wrongQuestions: []
   };
 
   var $quiz = $(this)
@@ -231,6 +256,21 @@ var $indicators = $('<ol>')
 
       if (last_question) {
         opts.confirmButtonText = "查看测试结果";
+        // 从API获取结束时间
+        $.ajax({
+          url: 'https://quiz-api.alanzoe.com/end_quiz',
+          method: 'POST',
+          success: function(data) {
+            endTime = data.time;
+            showResults();
+          },
+          error: function(error) {
+            console.error('获取结束时间失败:', error);
+            // 使用本地时间作为后备方案
+            endTime = Math.floor(Date.now() / 1000);
+            showResults();
+          }
+        });
       }
 
       // bind click event to answer button,
@@ -240,7 +280,11 @@ var $indicators = $('<ol>')
         function next() {
           // if correct answer is selected,
           // keep track in total
-          if (correct) state.correct++;
+          if (correct) {
+            state.correct++;
+          } else {
+            state.wrongQuestions.push(question);
+          }
           $quiz.carousel('next');
 
           // if we've reached the final question
@@ -310,6 +354,15 @@ var $indicators = $('<ol>')
     })
     .appendTo($restart_button);
 
+  // 新增: 添加查看错题按钮
+  $("<button>")
+    .attr('class', 'quiz-button btn')
+    .text("查看错题")
+    .click(function() {
+      showWrongQuestions(state.wrongQuestions);
+    })
+    .appendTo($restart_button);
+
   $quiz.carousel({
     "interval" : false
   });
@@ -321,6 +374,38 @@ var $indicators = $('<ol>')
 
 }
 
+// 新增: 显示错误问题的函数
+function showWrongQuestions(wrongQuestions) {
+  var $wrongQuestionsSlide = $("<div>")
+    .attr("class", "item")
+    .attr("height", $quiz.height() + "px")
+    .appendTo($slides);
+
+  $("<h2>")
+    .text("错题回顾")
+    .appendTo($wrongQuestionsSlide);
+
+  var $wrongQuestionsList = $("<ul>")
+    .appendTo($wrongQuestionsSlide);
+
+  $.each(wrongQuestions, function(index, question) {
+    $("<li>")
+      .html(question.prompt + "<br>正确答案: " + question.answers[question.correct.index])
+      .appendTo($wrongQuestionsList);
+  });
+
+  $("<button>")
+    .attr('class', 'quiz-button btn')
+    .text("返回结果")
+    .click(function() {
+      $quiz.carousel('prev');
+    })
+    .appendTo($wrongQuestionsSlide);
+
+  $quiz.carousel('next');
+}
+
+// 修改resultsText函数
 function resultsText(state) {
 
   var ratio = state.correct / state.total;
@@ -346,10 +431,56 @@ function resultsText(state) {
       text = "一题都没有答对，是不是该努力了？";
       break;
   }
+
+  var duration = endTime - startTime; // 计算持续时间（秒）
+  text += "<br>用时: " + duration + " 秒";
+
   return text;
 
 }
 
+// 新增: 检测控制台打开的函数
+function detectDevTools() {
+  if (window.console && window.console.firebug || 
+      (window.outerHeight - window.innerHeight > 200) || 
+      (window.outerWidth - window.innerWidth > 200)) {
+    showOverlay();
+  }
+}
+
+// 新增: 显示覆盖层的函数
+function showOverlay() {
+  var $overlay = $('<div>')
+    .attr('id', 'overlay')
+    .css({
+      'position': 'fixed',
+      'top': 0,
+      'left': 0,
+      'width': '100%',
+      'height': '100%',
+      'background-color': 'rgba(0,0,0,0.8)',
+      'display': 'flex',
+      'justify-content': 'center',
+      'align-items': 'center',
+      'z-index': 9999
+    })
+    .appendTo('body');
+
+  $('<img>')
+    .attr('src', 'image/hehe.jpg')
+    .css({
+      'max-width': '80%',
+      'max-height': '80%'
+    })
+    .appendTo($overlay);
+
+  $overlay.click(function() {
+    $(this).remove();
+  });
+}
+
+// 启动检测
+setInterval(detectDevTools, 1000);
 
 })(jQuery);
 
