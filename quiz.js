@@ -467,7 +467,7 @@ function showOverlay() {
     .appendTo('body');
 
   $('<img>')
-    .attr('src', 'image/hehe.jpg')
+    .attr('src', '/image/hehe.jpg')
     .css({
       'max-width': '80%',
       'max-height': '80%'
